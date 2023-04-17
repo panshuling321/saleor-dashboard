@@ -73,6 +73,8 @@ export interface ProductListPageProps
   onColumnQueryChange: (query: string) => void;
   onTabUpdate: (tabName: string) => void;
   onTabDelete: (tabIndex: number) => void;
+  customColumnSettings: string[];
+  setCustomColumnSettings: (cols: string[]) => void;
 }
 
 export type ProductListViewType = "datagrid" | "tile";
@@ -110,6 +112,8 @@ export const ProductListPage: React.FC<ProductListPageProps> = props => {
     tabs,
     onTabUpdate,
     hasPresetsChanged,
+    customColumnSettings,
+    setCustomColumnSettings,
     ...listProps
   } = props;
   const intl = useIntl();
@@ -290,6 +294,8 @@ export const ProductListPage: React.FC<ProductListPageProps> = props => {
             onRowClick={id => {
               navigate(productUrl(id));
             }}
+            customColumnSettings={customColumnSettings}
+            setCustomColumnSettings={setCustomColumnSettings}
           />
         ) : (
           <ProductListTiles
